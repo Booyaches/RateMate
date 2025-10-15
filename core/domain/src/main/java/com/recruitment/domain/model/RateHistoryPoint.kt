@@ -14,6 +14,7 @@ import java.time.LocalDate
  * @property is10PctAwayFromCurrent A boolean flag indicating whether the [mid] rate
  *           differs by more than 10% from the current average rate.
  *           It is `true` if the difference is greater than 10%, otherwise `false`.
+ *           Compliant to recruitment task.
  */
 
 data class RateHistoryPoint(

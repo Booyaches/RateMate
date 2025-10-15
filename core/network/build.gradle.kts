@@ -1,6 +1,7 @@
 plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.kotlin.android)
+    alias(libs.plugins.ksp)
 }
 
 android {
@@ -40,6 +41,7 @@ dependencies {
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
     implementation(project(":core:domain"))
-    implementation(libs.retrofit)
+    implementation(libs.retrofit.core)
     implementation(libs.moshi)
+    ksp(libs.moshi.codegen)
 }

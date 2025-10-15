@@ -1,15 +1,88 @@
-*.iml
-.gradle
-/local.properties
-/.idea/caches
-/.idea/libraries
-/.idea/modules.xml
-/.idea/workspace.xml
-/.idea/navEditor.xml
-/.idea/assetWizardSettings.xml
-.DS_Store
-/build
-/captures
-.externalNativeBuild
-.cxx
+# Gradle
+.gradle/
+build/
+!gradle/wrapper/gradle-wrapper.jar
+!**/src/**/build/
+
+# Local configuration
 local.properties
+*.iml
+.idea/
+.idea/caches
+.idea/libraries
+.idea/modules.xml
+.idea/workspace.xml
+.idea/navEditor.xml
+.idea/assetWizardSettings.xml
+
+# Log/OS files
+*.log
+*.DS_Store
+Thumbs.db
+
+# Android Studio
+captures/
+.externalNativeBuild/
+.cxx/
+*.apk
+*.ap_
+output.json
+
+# Keystore files
+*.jks
+*.keystore
+*.key
+*.pem
+
+# Google Services
+google-services.json
+GoogleService-Info.plist
+
+# Android Profiling
+*.hprof
+
+# Jetpack Compose preview cache
+buildSrc/.gradle/
+**/compose-compiler/
+.idea/deploymentTargetDropDown.xml
+.idea/shelf/
+
+# Gradle Configuration Cache
+.gradle/configuration-cache/
+.gradle/kotlin/
+.gradle/buildOutputCleanup/
+
+# Kotlin
+*.kotlin_module
+
+# Others
+*.orig
+*.rej
+*.bak
+*.swp
+
+# IntelliJ
+*.ipr
+*.iws
+
+# NDK / Native
+obj/
+.libs/
+
+# Firebase / Crashlytics
+crashlytics-build.properties
+fabric.properties
+
+# Local test reports and coverage
+test-results/
+coverage/
+*.ec
+
+# Fastlane
+fastlane/report.xml
+fastlane/Preview.html
+fastlane/screenshots
+
+# Generated files
+app/release/
+app/debug/

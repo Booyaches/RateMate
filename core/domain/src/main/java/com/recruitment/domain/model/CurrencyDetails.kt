@@ -1,4 +1,4 @@
-package com.recruitment.model.data
+package com.recruitment.domain.model
 
 /**
  * Represents the details of a currency, including its basic information and recent rate history.

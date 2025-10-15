@@ -1,4 +1,4 @@
-package com.recruitment.model.data
+package com.recruitment.domain.model
 
 import java.time.LocalDate
 

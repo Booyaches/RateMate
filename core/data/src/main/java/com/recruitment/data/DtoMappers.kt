@@ -1,5 +1,6 @@
 package com.recruitment.data
 
+import com.recruitment.database.model.CurrencyEntity
 import com.recruitment.domain.model.Currency
 import com.recruitment.domain.model.CurrencyCode
 import com.recruitment.domain.model.RateHistoryPoint
@@ -42,3 +43,4 @@ fun HistoryDto.toDomain(currentMid: Double): List<RateHistoryPoint> =
         val isAway = kotlin.math.abs(it.mid - currentMid) / currentMid > 0.10
         RateHistoryPoint(date = date, mid = it.mid, is10PctAwayFromCurrent = isAway)
     }.sortedByDescending { it.date }
+

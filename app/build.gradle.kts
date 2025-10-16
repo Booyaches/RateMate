@@ -1,8 +1,9 @@
 plugins {
-    id("org.jetbrains.kotlin.plugin.compose") version "2.0.0"
     alias(libs.plugins.android.application)
     alias(libs.plugins.hilt)
     alias(libs.plugins.ksp)
+    alias(libs.plugins.kotlin.android)
+    alias(libs.plugins.compose.compiler)
 }
 
 android {
@@ -33,12 +34,9 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_11
-        targetCompatibility = JavaVersion.VERSION_11
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
     }
-//    kotlinOptions {
-//        jvmTarget = "11"
-//    }
     buildFeatures {
         compose = true
     }
@@ -49,10 +47,16 @@ android {
     }
 }
 
+kotlin {
+    jvmToolchain(17)
+}
+
 dependencies {
+    implementation(project(":core:designsystem"))
+    implementation(project(":feature:currency"))
 
     implementation(libs.kotlin.stdlib)
-    implementation(libs.androidx.core.ktx)
+    implementation(libs.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.activity.compose)
     implementation(platform(libs.compose.bom))
@@ -67,10 +71,6 @@ dependencies {
     androidTestImplementation(libs.androidx.compose.ui.test.junit4)
     debugImplementation(libs.androidx.compose.ui.tooling)
     debugImplementation(libs.androidx.compose.ui.test.manifest)
-
-    implementation(project(":core:designsystem"))
-    implementation(project(":feature:currency"))
-
     implementation(libs.hilt.android)
     ksp(libs.hilt.compiler)
 

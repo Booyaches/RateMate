@@ -19,7 +19,6 @@ Z uwagi na bardzo ograniczony czas skupiłem się na stworzeniu kompletnej i prz
 Aplikacja działa i spełnia założenia:
 - pobieranie i prezentacja kursów walut z API NBP (tabele A i B),
 - szczegóły waluty z wykresem historii z ostatnich 14 dni,
-- wykorzystanie Jetpack Compose oraz architektury MVVM.
 
 ### Co nie zostało jeszcze ukończone:
 - nie zdążyłem dodać **testów jednostkowych** dla warstwy domenowej i repozytorium,  

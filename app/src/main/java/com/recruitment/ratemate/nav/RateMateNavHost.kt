@@ -6,6 +6,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.recruitment.currency.list.CurrencyListScreen
+import com.recruitment.details.CurrencyDetailsScreen
 
 @Composable
 fun RateMateNavHost(modifier: Modifier = Modifier) {
@@ -17,7 +18,14 @@ fun RateMateNavHost(modifier: Modifier = Modifier) {
         modifier = modifier
     ) {
         composable("currency_list") {
-            CurrencyListScreen()
+            CurrencyListScreen(
+                onCurrencyClick = { currencyCode, table ->
+                    navController.navigate("currency_details/$currencyCode/$table")
+                }
+            )
+        }
+        composable("currency_details/{currencyCode}/{table}") {
+            CurrencyDetailsScreen()
         }
     }
 }

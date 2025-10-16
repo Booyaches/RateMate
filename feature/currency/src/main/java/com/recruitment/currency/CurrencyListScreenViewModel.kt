@@ -1,4 +1,4 @@
-package com.recruitment.currency.list
+package com.recruitment.currency
 
 import android.util.Log
 import androidx.lifecycle.ViewModel

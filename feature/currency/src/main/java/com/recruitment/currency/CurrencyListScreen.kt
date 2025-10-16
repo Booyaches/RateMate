@@ -1,6 +1,5 @@
-package com.recruitment.currency.list
+package com.recruitment.currency
 
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
@@ -18,13 +17,11 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
-import com.recruitment.currency.CurrencyListScreenViewModel
 import com.recruitment.domain.model.Currency
 
 @Composable
 fun CurrencyListScreen(
-    viewModel: CurrencyListScreenViewModel = hiltViewModel(),
-    onCurrencyClick: (String, String) -> Unit
+    viewModel: CurrencyListScreenViewModel = hiltViewModel()
 ) {
     val uiState by viewModel.uiState.collectAsState()
 
@@ -38,10 +35,7 @@ fun CurrencyListScreen(
     } else {
         LazyColumn(modifier = Modifier.fillMaxSize()) {
             items(uiState.currencies) { currency ->
-                CurrencyListItem(
-                    currency = currency,
-                    onClick = { onCurrencyClick(currency.code.value, currency.table.value) }
-                )
+                CurrencyListItem(currency = currency)
                 HorizontalDivider()
             }
         }
@@ -49,14 +43,10 @@ fun CurrencyListScreen(
 }
 
 @Composable
-private fun CurrencyListItem(
-    currency: Currency,
-    onClick: () -> Unit
-) {
+private fun CurrencyListItem(currency: Currency) {
     Column(
         modifier = Modifier
             .fillMaxWidth()
-            .clickable(onClick = onClick)
             .padding(16.dp)
     ) {
         Text(text = "${currency.name} (${currency.code.value})")

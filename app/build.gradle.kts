@@ -53,6 +53,7 @@ android {
 dependencies {
     implementation(project(":core:designsystem"))
     implementation(project(":feature:currency"))
+    implementation(project(":feature:details"))
     implementation(project(":core:data"))
 
     implementation(libs.kotlin.stdlib)

@@ -4,6 +4,7 @@ import com.recruitment.data.mappers.toDomain
 import com.recruitment.data.mappers.toEntity
 import com.recruitment.database.model.CurrencyDao
 import com.recruitment.domain.model.Currency
+import com.recruitment.domain.model.RateHistoryPoint
 import com.recruitment.domain.repository.RatesRepository
 import com.recruitment.network.common.NetworkResult
 import com.recruitment.network.datasource.NbpCurrencyDataSource
@@ -30,7 +31,8 @@ class RatesRepositoryImpl(
         when (val res = remote.getTablesAB()) {
             is NetworkResult.Success -> {
                 val tables = res.data
-                val tableA = tables.firstOrNull { it.table == "A" }?.toEntity(now).orEmpty() //TODO Remove magic letters
+                val tableA = tables.firstOrNull { it.table == "A" }?.toEntity(now)
+                    .orEmpty() //TODO Remove magic letters
                 val tableB = tables.firstOrNull { it.table == "B" }?.toEntity(now).orEmpty()
                 val merged = tableA + tableB
                 dao.upsertAll(merged)
@@ -40,4 +42,18 @@ class RatesRepositoryImpl(
             NetworkResult.Loading -> Unit
         }
     }
+
+
+    override suspend fun getLast14DaysHistory( //I'd pobably pass the number of days as a parameter but I'm running out of time
+        code: String,
+        table: String,
+        currentMid: Double
+    ): Result<List<RateHistoryPoint>> = runCatching {
+        when (val res = remote.getCurrencyHistory(table, code, 14)) { //TODO magic number
+            is NetworkResult.Success -> res.data.toDomain(currentMid = currentMid)
+            is NetworkResult.Error -> throw IllegalStateException("Network error ${res.error}")
+            NetworkResult.Loading -> emptyList()
+        }
+    }
+
 }

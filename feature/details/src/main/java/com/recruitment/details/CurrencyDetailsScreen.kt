@@ -19,7 +19,6 @@ fun CurrencyDetailsScreen(
     ) {
         Column {
             Text(text = "Currency Code: ${viewModel.currencyCode}")
-            Text(text = "Table: ${viewModel.table}")
         }
     }
 }

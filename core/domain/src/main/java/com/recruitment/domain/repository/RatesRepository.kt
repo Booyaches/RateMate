@@ -3,7 +3,6 @@ package com.recruitment.domain.repository
 import com.recruitment.domain.model.Currency
 import com.recruitment.domain.model.CurrencyCode
 import com.recruitment.domain.model.RateHistoryPoint
-import com.recruitment.domain.model.TableSource
 import kotlinx.coroutines.flow.Flow
 
 /**
@@ -29,8 +28,9 @@ interface RatesRepository {
      * Fetches the historical exchange rates for the last 14 days for a specific currency.
      *
      * @param code The code of the currency to fetch history for.
-     * @param table The table source of the currency.
      * @return A [Result] containing a list of [RateHistoryPoint] objects.
      */
-    suspend fun getLast14DaysHistory(code: CurrencyCode, table: TableSource): Result<List<RateHistoryPoint>>
+    suspend fun getLast14DaysHistory(
+        code: CurrencyCode,
+    ): Result<List<RateHistoryPoint>>
 }

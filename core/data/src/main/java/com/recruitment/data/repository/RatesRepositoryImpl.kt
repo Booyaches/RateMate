@@ -4,6 +4,7 @@ import com.recruitment.data.mappers.toDomain
 import com.recruitment.data.mappers.toEntity
 import com.recruitment.database.model.CurrencyDao
 import com.recruitment.domain.model.Currency
+import com.recruitment.domain.model.CurrencyCode
 import com.recruitment.domain.model.RateHistoryPoint
 import com.recruitment.domain.repository.RatesRepository
 import com.recruitment.network.common.NetworkResult
@@ -43,17 +44,13 @@ class RatesRepositoryImpl(
         }
     }
 
-
-    override suspend fun getLast14DaysHistory( //I'd pobably pass the number of days as a parameter but I'm running out of time
-        code: String,
-        table: String,
-        currentMid: Double
-    ): Result<List<RateHistoryPoint>> = runCatching {
-        when (val res = remote.getCurrencyHistory(table, code, 14)) { //TODO magic number
-            is NetworkResult.Success -> res.data.toDomain(currentMid = currentMid)
+    override suspend fun getLast14DaysHistory(code: CurrencyCode): Result<List<RateHistoryPoint>> = runCatching {
+        val currency = dao.getByCode(code.value) ?: throw IllegalStateException("Currency not found")
+        when (val res =
+            remote.getCurrencyHistory(currency.tableSource, code.value, 14)) { //TODO magic number
+            is NetworkResult.Success -> res.data.toDomain(currentMid = currency.mid)
             is NetworkResult.Error -> throw IllegalStateException("Network error ${res.error}")
             NetworkResult.Loading -> emptyList()
         }
     }
-
 }

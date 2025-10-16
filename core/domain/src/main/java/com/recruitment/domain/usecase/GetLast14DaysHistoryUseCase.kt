@@ -8,6 +8,10 @@ import com.recruitment.domain.repository.RatesRepository
 class GetLast14DaysHistoryUseCase(
     private val repository: RatesRepository
 ) {
-    suspend operator fun invoke(code: CurrencyCode, table: TableSource): Result<List<RateHistoryPoint>> =
-        repository.getLast14DaysHistory(code, table)
+    suspend operator fun invoke(
+        code: CurrencyCode,
+        table: TableSource,
+        currentMid: Double
+    ): Result<List<RateHistoryPoint>> =
+        repository.getLast14DaysHistory(code)
 }

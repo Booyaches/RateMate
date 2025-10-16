@@ -51,6 +51,9 @@ android {
 }
 
 dependencies {
+    implementation(project(":core:designsystem"))
+    implementation(project(":feature:currency"))
+    implementation(project(":core:data"))
 
     implementation(libs.kotlin.stdlib)
     implementation(libs.core.ktx)
@@ -68,10 +71,8 @@ dependencies {
     androidTestImplementation(libs.androidx.compose.ui.test.junit4)
     debugImplementation(libs.androidx.compose.ui.tooling)
     debugImplementation(libs.androidx.compose.ui.test.manifest)
-
-    implementation(project(":core:designsystem"))
-    implementation(project(":feature:currency"))
-
+    implementation(libs.timber)
+    
     implementation(libs.hilt.android)
     ksp(libs.hilt.compiler)
 
@@ -79,4 +80,8 @@ dependencies {
 
     implementation(libs.androidx.navigation.compose)
     implementation(libs.hilt.navigation.compose)
+}
+
+hilt {
+    enableAggregatingTask = true
 }

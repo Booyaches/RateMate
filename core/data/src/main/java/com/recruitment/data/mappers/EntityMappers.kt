@@ -1,4 +1,4 @@
-package com.recruitment.data
+package com.recruitment.data.mappers
 
 import com.recruitment.database.model.CurrencyEntity
 import com.recruitment.domain.model.Currency
@@ -17,10 +17,3 @@ fun CurrencyEntity.toDomain() = Currency(
     table = TableSource(tableSource),
     effectiveDate = LocalDate.parse(effectiveDate)
 )
-
-fun mergePreferA(a: List<CurrencyEntity>, b: List<CurrencyEntity>): List<CurrencyEntity> {
-    val map = HashMap<String, CurrencyEntity>()
-    a.forEach { map[it.code] = it }
-    b.forEach { map.putIfAbsent(it.code, it) }
-    return map.values.toList()
-}

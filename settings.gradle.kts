@@ -1,12 +1,6 @@
 pluginManagement {
     repositories {
-        google {
-            content {
-                includeGroupByRegex("com\\.android.*")
-                includeGroupByRegex("com\\.google.*")
-                includeGroupByRegex("androidx.*")
-            }
-        }
+        google()
         mavenCentral()
         gradlePluginPortal()
     }
@@ -21,4 +15,10 @@ dependencyResolutionManagement {
 
 rootProject.name = "RateMate"
 include(":app")
- 
+include(":core:database")
+include(":core:network")
+include(":core:domain")
+include(":core:designsystem")
+include(":feature:currency")
+include(":core:data")
+include(":feature:details")

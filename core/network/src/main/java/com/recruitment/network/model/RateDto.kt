@@ -1,5 +1,7 @@
 package com.recruitment.network.model
 
+import com.squareup.moshi.JsonClass
+
 /**
  * Represents a single exchange rate from the network.
  *
@@ -7,6 +9,7 @@ package com.recruitment.network.model
  * @property code The currency code (e.g., "USD").
  * @property mid The middle exchange rate.
  */
+@JsonClass(generateAdapter = true)
 data class RateDto(
     val currency: String,
     val code: String,

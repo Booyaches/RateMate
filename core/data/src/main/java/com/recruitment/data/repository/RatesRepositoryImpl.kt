@@ -36,7 +36,7 @@ class RatesRepositoryImpl(
                 dao.upsertAll(merged)
             }
 
-            is NetworkResult.Error -> throw IllegalStateException("Network error") //TODO map to domain error
+            is NetworkResult.Error -> throw IllegalStateException("Network error ${res.error}") //TODO map to domain error
             NetworkResult.Loading -> Unit
         }
     }

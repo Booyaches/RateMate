@@ -1,5 +1,7 @@
 package com.recruitment.network.model
 
+import com.squareup.moshi.JsonClass
+
 /**
  * Represents the historical data for a currency from the network.
  *
@@ -8,6 +10,7 @@ package com.recruitment.network.model
  * @property code The currency code.
  * @property rates The list of historical exchange rates.
  */
+@JsonClass(generateAdapter = true)
 data class HistoryDto(
     val table: String?,
     val currency: String,

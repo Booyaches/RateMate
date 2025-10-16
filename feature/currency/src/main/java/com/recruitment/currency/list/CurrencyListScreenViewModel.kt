@@ -12,7 +12,6 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
-import timber.log.Timber
 import javax.inject.Inject
 
 data class CurrencyListUiState(
@@ -42,14 +41,15 @@ class CurrencyListScreenViewModel @Inject constructor(
         }
     }
 
-    private fun refreshRates(force: Boolean = false) {
+private fun refreshRates(force: Boolean = false) {
         viewModelScope.launch {
             _uiState.update { it.copy(isLoading = true) }
             refreshCurrenciesUseCase(force)
                 .onSuccess { _uiState.update { it.copy(isLoading = false) } }
                 .onFailure {
                     _uiState.update { it.copy(isLoading = false) }
-                    Log.d("TAG1", "ERROR")
+                    Log.d("CurrencyListScreenViewModel", "Error refreshing rates", it)
+
                 }
         }
     }

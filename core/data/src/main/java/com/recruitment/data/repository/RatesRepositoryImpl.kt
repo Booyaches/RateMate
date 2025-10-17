@@ -32,8 +32,7 @@ class RatesRepositoryImpl(
         when (val res = remote.getTablesAB()) {
             is NetworkResult.Success -> {
                 val tables = res.data
-                val tableA = tables.firstOrNull { it.table == "A" }?.toEntity(now)
-                    .orEmpty() //TODO Remove magic letters
+                val tableA = tables.firstOrNull { it.table == "A" }?.toEntity(now).orEmpty() //TODO Remove magic letters
                 val tableB = tables.firstOrNull { it.table == "B" }?.toEntity(now).orEmpty()
                 val merged = tableA + tableB
                 dao.upsertAll(merged)

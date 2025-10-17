@@ -40,14 +40,19 @@ dependencies {
     implementation(project(":core:database"))
     implementation(project(":core:network"))
 
+    implementation(libs.hilt.android)
+    implementation(libs.room.runtime)
     implementation(libs.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
-    testImplementation(libs.junit)
+
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
-    implementation(libs.hilt.android)
-    ksp(libs.hilt.compiler)
+    testImplementation(libs.junit)
+    testImplementation(libs.truth)
+    testImplementation(libs.kotlinx.coroutines.test)
+    testImplementation(libs.mockk)
+    testImplementation(libs.turbine)
 
-    implementation(libs.room.runtime)
+    ksp(libs.hilt.compiler)
 }

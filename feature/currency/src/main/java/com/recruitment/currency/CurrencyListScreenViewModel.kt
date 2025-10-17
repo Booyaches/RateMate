@@ -41,7 +41,7 @@ class CurrencyListScreenViewModel @Inject constructor(
         }
     }
 
-private fun refreshRates(force: Boolean = false) {
+    private fun refreshRates(force: Boolean = false) {
         viewModelScope.launch {
             _uiState.update { it.copy(isLoading = true) }
             refreshCurrenciesUseCase(force)
